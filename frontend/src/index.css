@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts already loaded via index.html ── */
+
+@layer base {
+  :root {
+    --brand: #25a574;
+    --brand-light: #48bf8e;
+    --danger: #ef4444;
+    --warning: #f97316;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-900 text-white font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  /* RTL support for Urdu / Arabic */
+  [dir="rtl"] {
+    font-family: "Noto Nastaliq Urdu", serif;
+    text-align: right;
+  }
+
+  ::selection {
+    @apply bg-brand-500 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-800;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-600 rounded-full;
+  }
+}
+
+@layer components {
+  /* ── Glass card ─────────────────────────────── */
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  .glass-hover {
+    @apply glass transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-brand-500/10;
+  }
+
+  /* ── Gradient text ───────────────────────────── */
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 to-brand-200 bg-clip-text text-transparent;
+  }
+
+  /* ── Buttons ─────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+           bg-brand-500 text-white font-semibold text-sm
+           hover:bg-brand-400 active:bg-brand-600
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-surface-900
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+           bg-white/10 text-white font-semibold text-sm border border-white/20
+           hover:bg-white/20 active:bg-white/5
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-surface-900
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl
+           bg-danger-500 text-white font-semibold text-sm
+           hover:bg-danger-400 active:bg-danger-600
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-danger-400 focus:ring-offset-2 focus:ring-offset-surface-900
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* ── Form inputs ─────────────────────────────── */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl
+           bg-surface-700 border border-white/10 text-white placeholder:text-white/30
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+           transition-all duration-200;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-white/70 mb-1.5;
+  }
+
+  .input-error {
+    @apply border-danger-500 focus:ring-danger-500;
+  }
+
+  .error-msg {
+    @apply text-sm text-danger-400 mt-1;
+  }
+
+  /* ── Badges ──────────────────────────────────── */
+  .badge-normal {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-brand-500/20 text-brand-300 border border-brand-500/30;
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-warning-500/20 text-warning-400 border border-warning-500/30;
+  }
+
+  .badge-danger {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-danger-500/20 text-danger-400 border border-danger-500/30;
+  }
+
+  /* ── Skeleton loader ──────────────────────────── */
+  .skeleton {
+    @apply bg-gradient-to-r from-surface-700 via-surface-600 to-surface-700
+           bg-[length:200%_100%] animate-shimmer rounded-lg;
+  }
+
+  /* ── Section heading ─────────────────────────── */
+  .section-title {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .section-sub {
+    @apply text-white/50 mt-1 text-sm;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

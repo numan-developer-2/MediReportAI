@@ -1,0 +1,46 @@
+# ============================================================
+# MediReport AI — Backend Dependencies
+# Python 3.11 | All free-tier tools
+# Install: pip install -r requirements.txt
+# ============================================================
+
+# ── Web Framework ─────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+
+# ── Supabase ──────────────────────────────────────────────
+supabase==2.4.6
+httpx==0.27.0
+
+# ── Auth & Security ───────────────────────────────────────
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# ── File Upload ───────────────────────────────────────────
+python-multipart==0.0.9
+
+# ── Config / Env ─────────────────────────────────────────
+pydantic-settings==2.2.1
+python-dotenv==1.0.1
+
+# ── Image Processing & OCR ───────────────────────────────
+Pillow==10.3.0
+pytesseract==0.3.10
+
+# ── PDF Generation ───────────────────────────────────────
+reportlab==4.1.0
+
+# ── HTTP Client (HuggingFace API calls) ──────────────────
+# httpx already listed above
+
+# ── Error Tracking ───────────────────────────────────────
+sentry-sdk[fastapi]==2.4.0
+
+# ── Payments ─────────────────────────────────────────────
+stripe==9.12.0
+
+# ── Email (Resend — 3K free/month) ───────────────────────
+resend==2.2.0
+
+# ── Async Support ─────────────────────────────────────────
+anyio==4.3.0
