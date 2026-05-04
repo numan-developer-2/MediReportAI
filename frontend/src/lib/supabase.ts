@@ -1,9 +1,12 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string
+const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || ''
+const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || ''
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('[MediReport AI] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY')
+  console.error(
+    '[MediReport AI] ⚠️ Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY.\n' +
+    'Please add these environment variables in your Vercel project settings and redeploy.'
+  )
 }
 
 export interface AbnormalValue {
