@@ -20,14 +20,41 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
 
   render() {
     if (this.state.hasError) {
+      const isMissingEnv = this.state.error?.message?.includes('supabase') ||
+        this.state.error?.message?.includes('VITE_SUPABASE') ||
+        !import.meta.env.VITE_SUPABASE_URL
+
+      if (isMissingEnv) {
+        return (
+          <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f172a', color: 'white', padding: '1rem', fontFamily: 'sans-serif' }}>
+            <div style={{ maxWidth: '480px', width: '100%', textAlign: 'center' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚙️</div>
+              <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>Configuration Required</h1>
+              <p style={{ color: '#94a3b8', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+                This deployment is missing required environment variables.
+                Please add the following in your <strong style={{ color: '#38bdf8' }}>Vercel → Settings → Environment Variables</strong>:
+              </p>
+              <div style={{ background: '#1e293b', borderRadius: '0.75rem', padding: '1rem', textAlign: 'left', marginBottom: '1.5rem', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <p style={{ color: '#4ade80', fontFamily: 'monospace', fontSize: '0.85rem', margin: '0.25rem 0' }}>VITE_SUPABASE_URL</p>
+                <p style={{ color: '#4ade80', fontFamily: 'monospace', fontSize: '0.85rem', margin: '0.25rem 0' }}>VITE_SUPABASE_ANON_KEY</p>
+                <p style={{ color: '#94a3b8', fontFamily: 'monospace', fontSize: '0.85rem', margin: '0.25rem 0' }}>VITE_API_URL</p>
+              </div>
+              <p style={{ color: '#64748b', fontSize: '0.8rem' }}>
+                After saving, click <strong style={{ color: '#38bdf8' }}>Redeploy</strong> in the Vercel deployments tab.
+              </p>
+            </div>
+          </div>
+        )
+      }
+
       return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white p-4">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
-            <p className="text-slate-400 mb-4">Please refresh the page to continue</p>
-            <button 
-              onClick={() => window.location.reload()} 
-              className="px-4 py-2 bg-sky-500 rounded-lg hover:bg-sky-600 transition-colors"
+        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f172a', color: 'white', padding: '1rem', fontFamily: 'sans-serif' }}>
+          <div style={{ textAlign: 'center' }}>
+            <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>Something went wrong</h1>
+            <p style={{ color: '#94a3b8', marginBottom: '1rem' }}>{this.state.error?.message}</p>
+            <button
+              onClick={() => window.location.reload()}
+              style={{ padding: '0.5rem 1.25rem', background: '#0ea5e9', borderRadius: '0.5rem', border: 'none', color: 'white', cursor: 'pointer' }}
             >
               Refresh Page
             </button>
