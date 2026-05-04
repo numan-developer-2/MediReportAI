@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Sparkles, Play, Pause, Volume2 } from 'lucide-react'
+import { Sparkles, Play, Pause } from 'lucide-react'
 
 interface Props {
   explanation_ur: string | null
@@ -71,7 +71,7 @@ export default function ResultCard({ explanation_ur, explanation_en, language, i
               style={{ 
                 background: isPlaying ? 'rgba(34,197,94,0.2)' : 'rgba(14,165,233,0.1)', 
                 color: isPlaying ? '#22c55e' : '#38bdf8',
-                border: `1px solid ${isPlaying ? 'rgba(34,197,94,0.3)' : 'rgba(14,165,233,0.2)'}'
+                border: `1px solid ${isPlaying ? 'rgba(34,197,94,0.3)' : 'rgba(14,165,233,0.2)'}`
               }}
             >
               {isPlaying ? <Pause size={14} /> : <Play size={14} />}
@@ -99,7 +99,7 @@ export default function ResultCard({ explanation_ur, explanation_en, language, i
             </p>
           </motion.div>
         ) : (
-          <motion.div key={`text-${language}`}
+          <motion.div key={'text-' + language}
             className="p-6"
             initial={{ opacity: 0, x: isUrdu ? 20 : -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -129,7 +129,9 @@ function AnimatedText({ text }: { text: string }) {
   const [done, setDone]           = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDisplayed('')
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDone(false)
     if (!text) return
 

@@ -215,7 +215,7 @@ function PatientTable({ patients }: { patients: Patient[] }) {
     toast.success('WhatsApp share opened')
   }
 
-  const handleMarkReviewed = (_patientId: string) => {
+  const handleMarkReviewed = () => {
     toast.success('Marked as reviewed')
   }
 
@@ -929,7 +929,7 @@ export default function HospitalAdmin() {
                           dataKey="value"
                         >
                           {[0, 1, 2, 3].map((_entry, index) => (
-                            <Cell key={`cell-${index}`} fill={['#0ea5e9', '#8b5cf6', '#10b981', '#64748b'][index]} />
+                            <Cell key={'cell-' + index} fill={['#0ea5e9', '#8b5cf6', '#10b981', '#64748b'][index]} />
                           ))}
                         </Pie>
                       </PieChart>

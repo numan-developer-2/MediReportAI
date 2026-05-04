@@ -72,6 +72,7 @@ export default function Result() {
   }, [id])
 
   // Initial fetch
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchReport() }, [fetchReport])
 
   // Polling until complete
@@ -322,7 +323,7 @@ export default function Result() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {abnormals.map((ab, i) => (
-                  <AbnormalBadge key={`${ab.name}-${i}`} {...ab} index={i} />
+                  <AbnormalBadge key={ab.name + '-' + i} {...ab} index={i} />
                 ))}
               </div>
             )}
